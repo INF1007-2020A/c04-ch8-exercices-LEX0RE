@@ -19,10 +19,8 @@ def compare_file(title1, title2):
                 
 def triple_space(input_file, output_file):
     with open(input_file, encoding="utf-8") as file1, open(output_file, "w", encoding="utf-8") as file2:
-        for char in file1.read():
-            if char == " ":
-                file2.write("  ")
-            file2.write(char)
+        for line in file1:
+            file2.write(line.replace(" ", "   "))
 
 if __name__ == '__main__':
     # TODO: Appelez vos fonctions ici
