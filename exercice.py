@@ -7,9 +7,25 @@ PERCENTAGE_TO_LETTER = {"A*": [95, 101], "A": [90, 95], "B+": [85, 90], "B": [80
 
 
 # TODO: Définissez vos fonction ici
+def compare_file(title1, title2):
+    if title1 != title2:
+        with open(title1, encoding="utf-8") as file1, open(title2, encoding="utf-8") as file2:
+            for line1 in file1:
+                line2 = file2.readline()
+                if line1 != line2:
+                    print(f"Dif : {line1} and {line2}")
+                    break
 
+                
+def triple_space(input_file, output_file):
+    with open(input_file, encoding="utf-8") as file1, open(output_file, "w", encoding="utf-8") as file2:
+        for char in file1.read():
+            if char == " ":
+                file2.write("  ")
+            file2.write(char)
 
 if __name__ == '__main__':
     # TODO: Appelez vos fonctions ici
-
+    #compare_file("exemple.txt", "notes.txt")
+    #triple_space("exemple.txt", "test.txt")
     pass
