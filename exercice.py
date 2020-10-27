@@ -5,6 +5,8 @@ PERCENTAGE_TO_LETTER = {"A*": [95, 101], "A": [90, 95], "B+": [85, 90], "B": [80
 
 # TODO: Importez vos modules ici
 
+from os import path
+import pickle
 
 # TODO: Définissez vos fonction ici
 def compare_file(title1, title2):
@@ -31,9 +33,38 @@ def attribute_letter(input_file, output_file):
                     out_file.write(str(note) + " " + letter + "\n")
                     break
 
+
+def recipe_method(file_path="recipe_book.p"):
+    method = "a"
+    while method in ["a", "b", "c", "d"]:
+        method = (input("Choisissez une option:\na) Ajouter une recette\nb) Modifer une recette\nc) Supprimer une recette\nd) Afficher une recette\ne) Quitter le programme\n")).strip()
+        if method in ["a", "b", "c", "d"]:
+            if path.exists(file_path):
+                book = pickle.load(open(file_path, 'rb'))
+            else:
+                book = dict()
+            name = input("Entrez le nom de votre recette?\n")
+            if method != "a":
+                if name not in book:
+                    print(f"Nom de recette introuvable\nLes recettes restantes sont {list(book.keys())}")
+                    continue
+            else:
+                if name in book:
+                    print("Nom de recette déjà utilisée")
+                    continue
+            if method == "d":
+                print(book[name])
+            elif method == "c":
+                del book[name]
+            else:
+                ingrediants = input("Entrez la liste d'ingrédiants de la recette, svp séparer les ingrédiants par une ,\n").split(",")
+                book[name] = ingrediants
+            pickle.dump(book, open(file_path, 'wb'))
+        
+
 if __name__ == '__main__':
     # TODO: Appelez vos fonctions ici
     #compare_file("exemple.txt", "notes.txt")
     #triple_space("exemple.txt", "test.txt")
-    attribute_letter("notes.txt", "notes_result.txt")
+    #recipe_method()
     pass
