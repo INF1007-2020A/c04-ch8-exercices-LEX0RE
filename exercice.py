@@ -64,7 +64,7 @@ def recipe_method(file_path="recipe_book.p"):
 
 if __name__ == '__main__':
     # TODO: Appelez vos fonctions ici
-    #compare_file("exemple.txt", "notes.txt")
-    #triple_space("exemple.txt", "test.txt")
-    #recipe_method()
+    compare_file("exemple.txt", "notes.txt")
+    triple_space("exemple.txt", "test.txt")
+    recipe_method()
     pass
